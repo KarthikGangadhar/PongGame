@@ -1,5 +1,5 @@
 # PongGame
-This is a 2D game developed using monogame framework for windows.  
+This is a 2D game developed using monogame framework for windows using C#.  
 
 The required softwares for the development are as follows.
 1. visual studio 2013 express or ultimate
