@@ -11,7 +11,7 @@ namespace PongGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        private Paddle paddle;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -27,7 +27,7 @@ namespace PongGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -39,8 +39,8 @@ namespace PongGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            paddle = new Paddle(Content.Load<Texture2D>("paddle"), Vector2.Zero, new Rectangle(0,0, Window.ClientBounds.Width, Window.ClientBounds.Height));
 
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace PongGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            paddle.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -74,9 +74,9 @@ namespace PongGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
+            spriteBatch.Begin();
+            paddle.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
